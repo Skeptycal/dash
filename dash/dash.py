@@ -310,6 +310,7 @@ class Dash(object):
         # template in the necessary component suite JS bundles
         # add the version number of the package as a query parameter
         # for cache busting
+        
         def _relative_url_path(relative_package_path='', namespace=''):
 
             # track the registered packages
