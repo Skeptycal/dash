@@ -310,7 +310,6 @@ class Dash(object):
         # template in the necessary component suite JS bundles
         # add the version number of the package as a query parameter
         # for cache busting
-        
         def _relative_url_path(relative_package_path='', namespace=''):
 
             # track the registered packages
@@ -342,7 +341,7 @@ class Dash(object):
                     for rel_path in resource['relative_package_path']:
                         srcs.append(_relative_url_path(
                             relative_package_path=rel_path,
-                            namespace=resource['namespace']
+                            namespace=resource['namespace'],
                         ))
             elif 'external_url' in resource:
                 if isinstance(resource['external_url'], str):
