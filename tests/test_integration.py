@@ -52,16 +52,16 @@ class Tests(IntegrationTests):
 
         self.startServer(app)
 
-        output1 = self.wait_for_element_by_id('output-1')
-        wait_for(lambda: output1.text == 'initial value')
+        self.wait_for_text_to_equal('#output-1', 'initial value')
         self.percy_snapshot(name='simple-callback-1')
 
         input1 = self.wait_for_element_by_id('input')
         input1.clear()
+        time.sleep(1)
 
         input1.send_keys('hello world')
 
-        output1 = self.wait_for_text_to_equal('#output-1', 'hello world')
+        self.wait_for_text_to_equal('#output-1', 'hello world')
         self.percy_snapshot(name='simple-callback-2')
 
         self.assertEqual(
@@ -105,15 +105,16 @@ class Tests(IntegrationTests):
             return data
 
         self.startServer(app)
-        output1 = self.wait_for_text_to_equal('#output-1', 'initial value')
+        self.wait_for_text_to_equal('#output-1', 'initial value')
         self.percy_snapshot(name='wildcard-callback-1')
 
-        input1 = self.wait_for_element_by_id('input')
+        input1 = self.wait_for_element_by_css_selector('#input')
         input1.clear()
+        time.sleep(1)
 
         input1.send_keys('hello world')
 
-        output1 = self.wait_for_text_to_equal('#output-1', 'hello world')
+        self.wait_for_text_to_equal('#output-1', 'hello world')
         self.percy_snapshot(name='wildcard-callback-2')
 
         self.assertEqual(
@@ -157,6 +158,7 @@ class Tests(IntegrationTests):
 
         input_ = self.wait_for_element_by_id('input')
         input_.clear()
+        time.sleep(1)
         input_.send_keys('x')
         output1 = self.wait_for_element_by_id('output1')
         output2 = self.wait_for_element_by_id('output2')
